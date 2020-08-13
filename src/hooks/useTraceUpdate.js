@@ -5,7 +5,6 @@ function useTraceUpdate(props) {
 
     useEffect(() => {
         const changedProps = Object.entries(props).reduce((accumulator, [key, value]) => {
-            // если значение изменилось - вернем его в результирующем объекте
             if (prev.current[key] !== value) {
                 accumulator[key] = [prev.current[key], value];
             }

@@ -11,16 +11,13 @@ const MapContainer = (props) => {
         }
 
         const { markers } = state;
-        markers.push(newMarker)
-
-        setState({
-            markers: markers
-        })
-
+        markers.push(newMarker);
+        setState({ markers: markers });
         props.onMapChange(markers);
     }
 
-    let markers = null
+    let markers = null;
+
     if(props.onlyView) {
         markers = props.route;
     } else {

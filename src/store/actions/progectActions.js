@@ -1,7 +1,7 @@
 import computeDistance from "../../utils/computeDistance";
 
 export const addItem = ({ title, sDescript, fDescript, pathLength, route }) => {
-    return (dispatch, getState, { getFirebase, getFirestore }) => {
+    return (dispatch, getState, { getFirestore }) => {
         const firestore = getFirestore();
         firestore.collection('pathDescription').add({
             title,
@@ -12,7 +12,7 @@ export const addItem = ({ title, sDescript, fDescript, pathLength, route }) => {
             favorite: false,
             createAt: new Date()
         }).then(() => {
-            dispatch({ type: 'ADD_ITEM', textInfo: {
+            dispatch({ type: 'ADD_ITEM', payload: {
                     title,
                     sDescript,
                     fDescript,
@@ -20,7 +20,8 @@ export const addItem = ({ title, sDescript, fDescript, pathLength, route }) => {
                     route,
                     favorite: false,
                     createAt: new Date()
-                } });
+                }
+            });
         }).catch((err) => {
             dispatch({ type: 'ADD_ITEM_ERROR', err });
         })

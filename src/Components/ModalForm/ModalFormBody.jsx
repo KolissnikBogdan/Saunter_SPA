@@ -1,10 +1,13 @@
-import React, { useEffect } from "react";
+import React, {useEffect} from "react";
 import MapForm from "../Map/MapContainer";
 
 import { Row, Col, Form, Button } from "react-bootstrap";
-import { useDispatch } from 'react-redux';
-import { addItem, selectItem } from '../../store/actions/progectActions';
+import {useDispatch, useSelector} from 'react-redux';
+import {addItem, selectItem} from '../../store/actions/progectActions';
+import { compose } from "redux";
+import { firestoreConnect } from "react-redux-firebase";
 
+import usePrevious from "../../hooks/usePrevious";
 import useForm from '../../hooks/useForm';
 import computeDistance from '../../utils/computeDistance';
 import validate from '../../utils/validationForm';
@@ -16,12 +19,23 @@ const ModalFormBody = (props) => {
     );
 
     const dispatch = useDispatch();
+    const pathDescription = useSelector(state => state.firestore.ordered.pathDescription);
 
     function submit() {
         dispatch(addItem(state));
-        dispatch(selectItem(state));
         props.onHide();
     }
+
+    const prevPathState = usePrevious(pathDescription);
+
+    useEffect(() => {
+        if(prevPathState && pathDescription && pathDescription.length !== 0) {
+            if(prevPathState.pathDescription !== pathDescription) {
+                let newArr = pathDescription.slice().sort((a, b) => b.createAt - a.createAt);
+                dispatch(selectItem(newArr[0]));
+            }
+        }
+    }, [pathDescription]);
 
     return(
         <Form onSubmit={handleSubmit}>
@@ -59,7 +73,7 @@ const ModalFormBody = (props) => {
                                 width="20"
                                 height="20"
                                 className="d-inline-block align-center"
-                            />{' '} Length: {state.route.length > 2 ? computeDistance(state.route) :
+                            />{' '} Length:  {state.route.length > 2 ? computeDistance(state.route) :
                             errors.pathLength && <b className="error" style={{color: 'red'}}>{errors.pathLength}</b>}
                         </Form.Label>
                     </Form.Group>
@@ -84,4 +98,4 @@ const ModalFormBody = (props) => {
     )
 }
 
-export default ModalFormBody;
+export default compose(firestoreConnect(()=> ['pathDescription']))(ModalFormBody);

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import PathItem from "./PathItem";
 import FullDecript from "./PathFullDescription";
 
@@ -16,6 +16,7 @@ const PathItems = () => {
 
     const dispatch = useDispatch();
     const pathDescription = useSelector(state => state.firestore.ordered.pathDescription);
+
     const [searchQuery, setQuery] = useState("");
 
     const inputEvent = (event) => {
@@ -36,7 +37,7 @@ const PathItems = () => {
         return (
             <React.Fragment>
                 <Row>
-                    <Col className="pl-0 border-right border-dark" style={divStyle}>
+                    <Col className="pl-0 border-right border-dark" style={ divStyle }>
                         <InputGroup className="mb-3">
                             <FormControl
                                 type="text"

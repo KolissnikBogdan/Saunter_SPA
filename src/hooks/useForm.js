@@ -12,8 +12,6 @@ const useForm = (callback, validate) => {
     const [errors, setErrors] = useState({});
     const [isSubmitting, setIsSubmitting] = useState(false);
 
-    const [mapRoutes, setMapRoutes] = useState([]);
-
     const handleChange = (e) => {
         setState({
             ...state,
@@ -24,13 +22,9 @@ const useForm = (callback, validate) => {
     const handleMapChange = (markers) => {
         setState({
             ...state,
-            route: markers
+            route: markers,
         })
     }
-
-    useEffect(() => {
-        setMapRoutes(state.route);
-    },[state, mapRoutes])
 
     const handleSubmit = (e) => {
         e.preventDefault();
