@@ -19,12 +19,9 @@ const ModalFormBody = (props) => {
 
     function submit() {
         dispatch(addItem(state));
+        dispatch(selectItem(state));
         props.onHide();
     }
-
-    useEffect(() => {
-        dispatch(selectItem(state));
-    }, [state, dispatch])
 
     return(
         <Form onSubmit={handleSubmit}>
