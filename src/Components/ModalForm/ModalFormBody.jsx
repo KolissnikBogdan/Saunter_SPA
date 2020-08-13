@@ -1,9 +1,9 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import MapForm from "../Map/MapContainer";
 
 import { Row, Col, Form, Button } from "react-bootstrap";
-import {useDispatch, useSelector} from 'react-redux';
-import {addItem, selectItem} from '../../store/actions/progectActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { addItem, selectItem } from '../../store/actions/progectActions';
 import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
 
@@ -20,6 +20,12 @@ const ModalFormBody = (props) => {
 
     const dispatch = useDispatch();
     const pathDescription = useSelector(state => state.firestore.ordered.pathDescription);
+
+    useEffect(() => {
+        if(state.route.length > 1){
+            computeDistance(state.route);
+        }
+    }, [handleMapChange])
 
     function submit() {
         dispatch(addItem(state));
@@ -73,7 +79,7 @@ const ModalFormBody = (props) => {
                                 width="20"
                                 height="20"
                                 className="d-inline-block align-center"
-                            />{' '} Length:  {state.route.length > 2 ? computeDistance(state.route) :
+                            />{' '} Length:  {state.route.length > 1 ? computeDistance(state.route) :
                             errors.pathLength && <b className="error" style={{color: 'red'}}>{errors.pathLength}</b>}
                         </Form.Label>
                     </Form.Group>

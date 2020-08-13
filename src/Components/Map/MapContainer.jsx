@@ -55,5 +55,6 @@ const MapContainer = (props) => {
 }
 
 export default GoogleApiWrapper({
-    apiKey: ('AIzaSyCSnZh4D_rLPyato0wJ79ch-vdxslft4CI')
+    apiKey: ('AIzaSyCSnZh4D_rLPyato0wJ79ch-vdxslft4CI'),
+    libraries: ['geometry']
 })(MapContainer)
