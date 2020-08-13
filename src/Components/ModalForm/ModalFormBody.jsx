@@ -25,7 +25,7 @@ const ModalFormBody = (props) => {
         if(state.route.length > 1){
             computeDistance(state.route);
         }
-    }, [handleMapChange])
+    }, [handleMapChange, state.route])
 
     function submit() {
         dispatch(addItem(state));
@@ -41,7 +41,7 @@ const ModalFormBody = (props) => {
                 dispatch(selectItem(newArr[0]));
             }
         }
-    }, [pathDescription]);
+    }, [pathDescription, selectItem]);
 
     return(
         <Form onSubmit={handleSubmit}>
