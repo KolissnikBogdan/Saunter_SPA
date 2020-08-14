@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import PathItem from "./PathItem";
 import FullDecript from "./PathFullDescription";
 
-import { firestoreConnect } from 'react-redux-firebase';
-import { useDispatch, useSelector } from 'react-redux'
-import { selectItem } from '../../store/actions/progectActions';
+import { firestoreConnect } from "react-redux-firebase";
+import { useDispatch, useSelector } from "react-redux"
+import { selectItem } from "../../store/actions/progectActions";
 import { compose } from "redux";
 import { Spinner, Button, Col, FormControl, InputGroup, Row } from "react-bootstrap";
 

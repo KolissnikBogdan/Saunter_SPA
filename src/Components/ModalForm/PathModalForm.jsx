@@ -1,7 +1,7 @@
 import React from "react";
 import { Modal } from "react-bootstrap";
 import ModalFormBody from "./ModalFormBody";
-import './PathModalForm.css';
+import "./PathModalForm.css";
 
 const PathModalForm = (props) => {
     return (

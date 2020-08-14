@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { GoogleApiWrapper, Map, Marker, Polyline } from 'google-maps-react';
+import React, { useState } from "react";
+import { GoogleApiWrapper, Map, Marker, Polyline } from "google-maps-react";
 
 const MapContainer = (props) => {
     const [state, setState] = useState({ markers: [] });

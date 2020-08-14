@@ -1,6 +1,6 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import ListOfItem from '../List/PathItems.jsx'
+import ListOfItem from "../List/PathItems.jsx"
 
 const MainPage = () => {
     return(

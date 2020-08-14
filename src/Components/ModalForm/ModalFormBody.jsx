@@ -2,15 +2,15 @@ import React, { useEffect } from "react";
 import MapForm from "../Map/MapContainer";
 
 import { Row, Col, Form, Button } from "react-bootstrap";
-import { useDispatch, useSelector } from 'react-redux';
-import { addItem, selectItem } from '../../store/actions/progectActions';
+import { useDispatch, useSelector } from "react-redux";
+import { addItem, selectItem } from "../../store/actions/progectActions";
 import { compose } from "redux";
 import { firestoreConnect } from "react-redux-firebase";
 
 import usePrevious from "../../hooks/usePrevious";
-import useForm from '../../hooks/useForm';
-import computeDistance from '../../utils/computeDistance';
-import validate from '../../utils/validationForm';
+import useForm from "../../hooks/useForm";
+import computeDistance from "../../utils/computeDistance";
+import validate from "../../utils/validationForm";
 
 const ModalFormBody = (props) => {
     const { handleChange, handleMapChange, handleSubmit, state, errors } = useForm(
